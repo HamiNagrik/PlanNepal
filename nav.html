@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Screen Dropdown Navigation</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            padding-top: 80px; /* Space for fixed nav */
+        }
+
+        /* Main Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #2c3e50;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        /* Top Level Menu Items */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            width: 100%;
+            justify-content: space-evenly;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 25px 20px;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .nav-link:hover {
+            background: #34495e;
+        }
+
+        /* Full-Screen Dropdown */
+        .mega-menu {
+            position: fixed;
+            margin-top: 60px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height:auto; /* Full screen height */
+            background: rgba(215, 236, 216, 0.95); /* White background with slight transparency */
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .mega-menu-container {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .mega-menu-col {
+          margin-top: 50px;
+            width: 20%;
+        }
+
+        .mega-menu-col h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+
+        .mega-menu-links {
+            list-style: none;
+        }
+
+        .mega-menu-links li {
+            margin-bottom: 10px;
+        }
+
+        .mega-menu-links a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            padding: 5px 0;
+            text-align: center;
+        }
+
+        .mega-menu-links a:hover {
+            color: #e74c3c;
+        }
+
+        /* Show dropdown on hover */
+        .nav-item:hover .mega-menu {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mega-menu-container {
+                flex-direction: column;
+            }
+
+            .mega-menu-col {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- No Brand Name Logo Here -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Products</a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-col">
+                                <h3>Category 1</h3>
+                                <ul class="mega-menu-links">
+                                    <li><a href="#">Product A</a></li>
+                                    <li><a href="#">Product B</a></li>
+                                    <li><a href="#">Product C</a></li>
+                                    <li><a href="#">Product D</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h3>Category 2</h3>
+                                <ul class="mega-menu-links">
+                                    <li><a href="#">Service X</a></li>
+                                    <li><a href="#">Service Y</a></li>
+                                    <li><a href="#">Service Z</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h3>Category 3</h3>
+                                <ul class="mega-menu-links">
+                                    <li><a href="#">Solution 1</a></li>
+                                    <li><a href="#">Solution 2</a></li>
+                                    <li><a href="#">Solution 3</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-menu-col">
+                                <h3>Featured</h3>
+                                <ul class="mega-menu-links">
+                                    <li><a href="#">New Arrivals</a></li>
+                                    <li><a href="#">Best Sellers</a></li>
+                                    <li><a href="#">Special Offers</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Solutions</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main style="padding: 20px; max-width: 1200px; margin: 0 auto;">
+        <h1>Website Content</h1>
+        <p>This is the main content of your website. The navigation remains fixed at the top.</p>
+        <!-- Add more content here -->
+    </main>
+
+    <script>
+        // Mobile toggle functionality would go here
+        // This is the basic version with hover for desktop
+    </script>
+</body>
+</html>

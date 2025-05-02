@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Full-Width Dropdown Nav</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      background-color: #333;
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 20px;
+      align-items: center;
+      position: relative;
+      color: white;
+    }
+
+    .navbar a {
+      color: white;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .navbar .menu {
+      display: flex;
+      gap: 10px;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100vw;
+      background-color: #444;
+      z-index: 10;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 16px;
+      display: block;
+      text-decoration: none;
+      border-top: 1px solid #555;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #666;
+    }
+
+    .dropdown > a {
+      padding-right: 20px;
+    }
+
+    /* Styles for active menu items */
+    .navbar a:hover {
+      background-color: #555;
+    }
+
+    /* Responsive for smaller screens */
+    @media (max-width: 768px) {
+      .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #333;
+      }
+
+      .navbar.active .menu {
+        display: flex;
+      }
+
+      .navbar a {
+        padding: 12px 16px;
+      }
+
+      .dropdown-content {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar" id="navbar">
+    <a href="#">Logo</a>
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <div class="dropdown">
+        <a href="#">Services ▼</a>
+        <div class="dropdown-content">
+          <a href="#">Web Design</a>
+          <a href="#">SEO</a>
+          <a href="#">Marketing</a>
+        </div>
+      </div>
+      <a href="#">Contact</a>
+    </div>
+    <button class="toggle-btn" onclick="toggleMenu()">☰</button>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const navbar = document.getElementById("navbar");
+      navbar.classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>

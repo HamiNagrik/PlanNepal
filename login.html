@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Authentication</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Firebase SDK for authentication -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .auth-btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .login-btn {
+            background: transparent;
+            border: 1px solid #3498db;
+            color: #3498db;
+        }
+        
+        .login-btn:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .register-btn {
+            background: #3498db;
+            border: 1px solid #3498db;
+            color: white;
+        }
+        
+        .register-btn:hover {
+            background: #2980b9;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            padding: 20px 0;
+            display: block;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #3498db;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #2c3e50;
+        }
+        
+        /* Modals */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 450px;
+            padding: 30px;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #7f8c8d;
+        }
+        
+        .modal-title {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        /* Social Login */
+        .social-login {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .social-divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #7f8c8d;
+        }
+        
+        .social-divider::before,
+        .social-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+            margin: 0 10px;
+        }
+        
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .facebook {
+            background: #3b5998;
+        }
+        
+        .google {
+            background: #db4437;
+        }
+        
+        .twitter {
+            background: #1da1f2;
+        }
+        
+        .apple {
+            background: #000;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+        }
+        
+        .form-footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        
+            .nav-links {
+                position: fixed;
+                top: 110px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transform: translateY(-100%);
+                transition: transform 0.3s;
+                z-index: 999;
+            }
+        
+            .nav-links.active {
+                transform: translateY(0);
+            }
+        
+            .nav-links li {
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+        
+            .nav-links a {
+                padding: 15px;
+            }
+        
+            .auth-buttons {
+                display: none;
+            }
+        
+            .mobile-auth-btn {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 20px;
+                color: #3498db;
+                cursor: pointer;
+            }
+        
+            .social-buttons {
+                gap: 10px;
+            }
+        }
+        
+        /* Auth State */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .logout-btn {
+            background: #e74c3c;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <a href="#" class="logo">
+            <img src="https://via.placeholder.com/40" alt="Logo">
+            BrandName
+        </a>
+        
+        <div class="auth-buttons" id="authButtons">
+            <button class="auth-btn login-btn" id="openLogin">Login</button>
+            <button class="auth-btn register-btn" id="openRegister">Register</button>
+        </div>
+        
+        <div class="user-profile" id="userProfile" style="display: none;">
+            <img src="" alt="User Avatar" class="user-avatar" id="userAvatar">
+            <span id="userName"></span>
+            <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+        
+        <button class="mobile-auth-btn" id="mobileAuthBtn">
+            <i class="fas fa-user"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Solutions</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h1 style="text-align: center; margin-bottom: 30px;">Welcome to Our Website</h1>
+        <p style="text-align: center; color: #7f8c8d;" id="authStatus">Please login to access all features</p>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeLogin">&times;</button>
+            <h2 class="modal-title">Login to Your Account</h2>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" required>
+                </div>
+                
+                <button type="submit" class="btn">Login</button>
+                
+                <div class="social-login">
+                    <div class="social-divider">or login with</div>
+                    <div class="social-buttons">
+                        <a href="#" class="social-btn facebook" id="facebookLogin">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-btn google" id="googleLogin">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-btn twitter" id="twitterLogin">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-btn apple" id="appleLogin">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="form-footer">
+                    Don't have an account? <a href="#" id="switchToRegister">Register here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeRegister">&times;</button>
+            <h2 class="modal-title">Create Your Account</h2>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerConfirm">Confirm Password</label>
+                    <input type="password" id="registerConfirm" class="form-control" required>
+                </div>
+                
+                <button type="submit" class="btn">Register</button>
+                
+                <div class="social-login">
+                    <div class="social-divider">or register with</div>
+                    <div class="social-buttons">
+                        <a href="#" class="social-btn facebook" id="facebookRegister">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-btn google" id="googleRegister">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-btn twitter" id="twitterRegister">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-btn apple" id="appleRegister">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="form-footer">
+                    Already have an account? <a href="#" id="switchToLogin">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Firebase configuration (replace with your actual config)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEXAMPLEEXAMPLEEXAMPLEEXAMPLE",
+            authDomain: "your-project-id.firebaseapp.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project-id.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abc123def456ghi789jkl0"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const openLogin = document.getElementById('openLogin');
+            const openRegister = document.getElementById('openRegister');
+            const mobileAuthBtn = document.getElementById('mobileAuthBtn');
+            const loginModal = document.getElementById('loginModal');
+            const registerModal = document.getElementById('registerModal');
+            const closeLogin = document.getElementById('closeLogin');
+            const closeRegister = document.getElementById('closeRegister');
+            const switchToRegister = document.getElementById('switchToRegister');
+            const switchToLogin = document.getElementById('switchToLogin');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const authButtons = document.getElementById('authButtons');
+            const userProfile = document.getElementById('userProfile');
+            const userAvatar = document.getElementById('userAvatar');
+            const userName = document.getElementById('userName');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const authStatus = document.getElementById('authStatus');
+            
+            // Social login buttons
+            const facebookLogin = document.getElementById('facebookLogin');
+            const googleLogin = document.getElementById('googleLogin');
+            const twitterLogin = document.getElementById('twitterLogin');
+            const appleLogin = document.getElementById('appleLogin');
+            const facebookRegister = document.getElementById('facebookRegister');
+            const googleRegister = document.getElementById('googleRegister');
+            const twitterRegister = document.getElementById('twitterRegister');
+            const appleRegister = document.getElementById('appleRegister');
+
+            // Providers
+            const googleProvider = new firebase.auth.GoogleAuthProvider();
+            const facebookProvider = new firebase.auth.FacebookAuthProvider();
+            const twitterProvider = new firebase.auth.TwitterAuthProvider();
+            const appleProvider = new firebase.auth.OAuthProvider('apple.com');
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // Show login modal
+            function showLoginModal() {
+                loginModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Show register modal
+            function showRegisterModal() {
+                registerModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Close modals
+            function closeModals() {
+                loginModal.classList.remove('active');
+                registerModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Event listeners
+            openLogin.addEventListener('click', showLoginModal);
+            openRegister.addEventListener('click', showRegisterModal);
+            mobileAuthBtn.addEventListener('click', function() {
+                if (auth.currentUser) {
+                    // If user is logged in, show profile options on mobile
+                    userProfile.style.display = userProfile.style.display === 'flex' ? 'none' : 'flex';
+                } else {
+                    showLoginModal();
+                }
+            });
+            closeLogin.addEventListener('click', closeModals);
+            closeRegister.addEventListener('click', closeModals);
+            switchToRegister.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginModal.classList.remove('active');
+                showRegisterModal();
+            });
+            switchToLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                registerModal.classList.remove('active');
+                showLoginModal();
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === loginModal || e.target === registerModal) {
+                    closeModals();
+                }
+            });
+
+            // Update UI based on auth state
+            function updateUI(user) {
+                if (user) {
+                    // User is signed in
+                    authButtons.style.display = 'none';
+                    userProfile.style.display = 'flex';
+                    
+                    // Set user info
+                    userName.textContent = user.displayName || user.email;
+                    userAvatar.src = user.photoURL || 'https://via.placeholder.com/40';
+                    
+                    // Update status message
+                    authStatus.textContent = `Welcome back, ${user.displayName || user.email}!`;
+                    authStatus.style.color = '#2c3e50';
+                } else {
+                    // User is signed out
+                    authButtons.style.display = 'flex';
+                    userProfile.style.display = 'none';
+                    
+                    // Clear user info
+                    userName.textContent = '';
+                    userAvatar.src = '';
+                    
+                    // Update status message
+                    authStatus.textContent = 'Please login to access all features';
+                    authStatus.style.color = '#7f8c8d';
+                }
+            }
+
+            // Email/password login
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        // Signed in
+                        closeModals();
+                        loginForm.reset();
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            });
+
+            // Email/password registration
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('registerConfirm').value;
+                
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        // Signed up
+                        return userCredential.user.updateProfile({
+                            displayName: name
+                        });
+                    })
+                    .then(() => {
+                        closeModals();
+                        registerForm.reset();
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            });
+
+            // Social authentication
+            function socialAuth(provider) {
+                auth.signInWithPopup(provider)
+                    .then((result) => {
+                        // Signed in
+                        closeModals();
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            }
+
+            // Social login handlers
+            googleLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                socialAuth(googleProvider);
+            });
+            
+            facebookLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                socialAuth(facebookProvider);
+            });
+            
+            twitterLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                socialAuth(twitterProvider);
+            });
+            
+            appleLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                socialAuth(appleProvider);
+            });
+            
+            // Social register handlers (same as login)
+            googleRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                socialAuth(googleProvider);
+            });
+            
+            facebookRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                socialAuth(facebookProvider);
+            });
+            
+            twitterRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                socialAuth(twitterProvider);
+            });
+            
+            appleRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                socialAuth(appleProvider);
+            });
+
+            // Logout
+            logoutBtn.addEventListener('click', function() {
+                auth.signOut();
+            });
+
+            // Auth state observer
+            auth.onAuthStateChanged((user) => {
+                updateUI(user);
+            });
+
+            // Responsive adjustments
+            function handleResize() {
+                if (window.innerWidth > 768) {
+                    navLinks.classList.remove('active');
+                    userProfile.style.display = auth.currentUser ? 'flex' : 'none';
+                } else {
+                    userProfile.style.display = 'none';
+                }
+            }
+
+            window.addEventListener('resize', handleResize);
+        });
+    </script>
+</body>
+</html>

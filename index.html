@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HamiNagrik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+</head>
+<body>
+    <!-- Top Bar with Logo -->
+    <div class="top-bar">
+        <div class="top-container">
+            <a href="myplan.html" class="logo">
+                <img src="images/ID.jpg" alt="Logo">
+              PlanNepal
+            </a>
+            
+            <div class="auth-buttons">
+                <button class="auth-btn login-btn" id="loginBtn">Login</button>
+                <button class="auth-btn register-btn" id="registerBtn">Register</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="main-nav" id="mainNav">
+              <ul class="nav-links">
+                  <li> <a href="index.html">🇳🇵मेरो नेपाल 🇳🇵</a></li>
+
+                  <li class="dropdown">
+                      <a href="nepal.html" class="dropdown-toggle" data-dropdown="products">
+                          <font color="#a50404">🌈 सौन्दर्य आँखाले देखिन्छ </font><i class="fas fa-chevron-down"></i>
+                      </a>
+                      <div class="fullscreen-dropdown" id="productsDropdown">
+                          <div class="dropdown-container">
+                              <div class="dropdown-grid">
+                                  <div class="dropdown-column">
+                                 
+                                      <ul>
+                                          <li><a href="positive.html"><font color="#a50404">🇳🇵 नेपालको सकारात्मकता 🌸</font></a></li>
+                                          <li><a href="hope.html"><font color="blue">🕊️ तर आशा बाँकी छ </font></a></li>
+                                          <li><a href="young.html"><font color="yellow"> 👩‍🎓 शिक्षित र सीपयुक्त युवा पुस्ता</font></a></li>
+                                      </ul>
+                                  </div>
+                                  
+                                  <div class="dropdown-featured">
+                                      <h3>Our Beauty </h3>
+                                      <p>नेपाल सुन्दर र अन्य देशहरूभन्दा फरक किन हो भने यसको प्राकृतिक सौन्दर्य, सांस्कृतिक विविधता, र ऐतिहासिक महत्त्वले गर्दा हो। यहाँ संसारको सबैभन्दा अग्ला हिमालहरू, हरियाली घाँसे मैदानहरू, र घना जंगलहरू छन्। सगरमाथा (माउन्ट एभरेस्ट), अन्नपूर्णा, र लाङटाङ जस्ता प्रसिद्ध हिमालहरूले नेपाललाई अद्वितीय बनाउँछन्।</p>
+                                      <img src="images/kindness.jpg" alt="Special Offer">
+                                      <a href="nepal.html" class="featured-btn">To know more -- देश बन्न सक्छ</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="dropdown">
+                    <a href="corrupt.html" class="dropdown-toggle" data-dropdown="corruption">
+                      <font color="#00008B">🎯 मेरो योजना </font><i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="fullscreen-dropdown" id="corruptionDropdown">
+                        <div class="dropdown-container">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-column">
+                                    <ul>
+                                        <li><a href="education.html"><font color="#00008B">📚 शिक्षा योजना</font></a></li>
+                                        <li><a href="jobs.html"><font color="#00008B">रोजगारी उपलब्ध  </font></a></li>
+                                        <li><a href="homes.html"><font color="#00008B">🏠आवास (घर) र शिक्षा (शैक्षिक सुविधा) </font></a></li>
+                                        <li><a href="health.html"><font color="#00008B"> स्वास्थ्य सेवा योजना 🩺</font></a></li>
+                                        <li><a href="food.html"><font color="#00008B"> आहार (खाना) सुनिश्चित 🩺</font></a></li>								
+                                    </ul>
+                                </div>
+                                
+                                <div class="dropdown-featured">
+                                    <h3>नेपाललाई सुन्दर, विकसित, र समृद्ध बनाउन केही महत्त्वपूर्ण कदमहरू यस प्रकार छन्:</h3>
+                                    <p>यदि सरकार, निजीक्षेत्र, र जनताले मिलेर यी कदमहरू कार्यान्वयन गर्न सके, नेपाल अझै सुन्दर, समृद्ध, र गर्व गर्न लायक देश बन्न सक्छ। आऔ, सबैले आफ्नो भूमिका निभाऔं र नेपाललाई उचाईंौं! 🇳🇵✨</p>
+                                    <img src="images/jobs.jpeg" alt="Special Offer">
+                                    <a href="myplan.html" class="featured-btn">Let us build Together</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="corrupt.html" class="dropdown-toggle" data-dropdown="curruption">
+                        <font color="#a50404"><font color="#FF0000">Curruption</font> </font><i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="fullscreen-dropdown" id="curruptionDropdown">
+                        <div class="dropdown-container">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-column">
+                               
+                                    <ul>
+                                        <li><a href="hownepal.html"><font color="black">🇳🇵 नेपाल कसरी भ्रष्ट राष्ट्र बन्दै गयो? 🕳️</font></a></li>
+                                        <li><a href="wealths.html"><font color="#a50404">नेताको सम्पत्ति </font></a></li>
+                                        <li><a href="zerocorrupt.html"><font color="#a50404">🚫 भ्रष्टाचार अन्त्य गर्ने </font></a></li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="dropdown-featured">
+                                    <h3>भ्रष्ट राजनीतिज्ञहरूलाई नियन्त्रण गर्ने उपायहरू:</h3>
+                                    <p>नेपालमा भ्रष्टाचार एक गम्भीर समस्या हो, र भ्रष्ट राजनीतिज्ञहरू यसका प्रमुख कारक हुन्। यी नेताहरूले आफ्नो शक्ति र पदको दुरुपयोग गरी देशको धन र संसाधनहरू लुट्छन्, जसले गर्दा आम जनताको जीवनस्तर सुधार्न सक्दैन। भ्रष्टाचारले न्याय, विकास, र प्रशासनिक पारदर्शितालाई नष्ट गरेको छ।!</p>
+                                    <img src="images/bhrast.jpg" alt="Special Offer">
+                                    <a href="#" class="featured-btn">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li><a href="stopcorruption.html" class="list-link"><font color="#A52A2A">🚫 भ्रष्टाचार नियन्त्रण 🇳🇵</font></a></li>
+                <li><a href="contact.html" class="list-link"><font color="#A52A2A">Contact Us</font></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+                    <section id="banner">
+                        <div class="content">
+                            <h2>🇳🇵 नेपाल र यसको भविष्य 🌟 </h2>
+                            
+                            <h1>🌍 नेपालको वर्तमान अवस्था
+                                नेपाल अहिले पनि एक विकासशील देश हो, जहाँ गरीबी, बेरोजगारी, र शासन प्रणालीमा कमजोरी जस्ता समस्या छन्। तर, यत्रा खतरनाक समस्याहरूको बाबजुद, नेपालमा संसाधन र मनशक्तिको अपार क्षमता छ, जुन भविष्यमा हाम्रो देशलाई समृद्ध बनाउन मद्दत पुर्याउन सक्छ।</h1>
+
+                                <h4> १. प्राकृतिक सम्पदा: नेपालका पहाड, हिमाल, नदी, र वनस्पतिहरू विश्वभर प्रसिद्ध छन्। यहाँको पर्यावरणीय सौन्दर्यले सस्तो मूल्यमा अन्तर्राष्ट्रिय पर्यटनलाई आकर्षित गर्ने क्षमता राख्दछ। </h4>
+                                <h4> २. संस्कृति र परम्परा: नेपालमा विभिन्न जाति, भाषा र धर्महरूको अस्तित्व रहेकोले यहाँको संस्कृति र सामाजिक विविधता यसको बलियो पक्ष हो। </h4>
+                        </div>
+                    </section>
+                    <section id="main">
+                        <div class="container1">
+                            <!-- Features -->
+                            <img src="images/MtEverst.jpg" alt="सगरमाथा हिमाल" width="100%" style="border-radius: 10px; margin-top: 10px;"> 
+                            <h1>🔮 नेपालको भविष्यका सम्भावना र अवसरहरू</h1>
+
+                            <h3>🏠 "सुरक्षित घर र उच्चस्तरीय शिक्षा" कुनै सपना होइन – यो आधुनिक र न्यायपूर्ण नेपाल निर्माणको आधार हो। सरकार, समुदाय र प्रविधिको सहकार्यले गर्दा
+                                "सबैका लागि घर, सबैका लागि शिक्षा" सम्भव छ। </h3>
+                            <div class="section">
+
+                                <h2>📘 🇳🇵 नेपालको आर्थिक विकास योजना -- विकास प्रमुख तत्वहरू: :</h2>
+                            </div>
+                            <div class="section">
+                                <button onclick="showJobs('agriculture')">१.कृषि आधुनिकीकरण:</button>
+                                <button onclick="showJobs('hydro')">२.जलविद्युत् र नवीकरणीय उर्जा:</button>
+                                <button onclick="showJobs('tourist')">📊 ३.पर्यटन क्षेत्र विकास:</button>
+                                <button onclick="showJobs('industries')">४.उद्योग र लगानी प्रवर्द्धन</button>
+                                <button onclick="showJobs('jobyong')">५.श्रमशक्ति र युवा सशक्तिकरण:</button>
+                            
+                                <div id="agriculture" class="job-details">
+                            
+                                    <h2>१. कृषि आधुनिकीकरण:</h2>
+                                    <ul>
+                                        <li>विज्ञान र प्रविधिमा आधारित कृषि प्रणाली।</li>
+                                        <li>सिंचाइ, मल, बीउ-बिजन, कृषि ऋण र बीमा।</li>
+                                    </ul>
+                                </div>
+    
+                                <div id="hydro" class="job-details"><br>
+                                    <h2>२. जलविद्युत् र नवीकरणीय उर्जा:</h2>
+                                            <ul>
+                                                <li>साना र ठूला जलविद्युत् आयोजना विस्तार।</li>
+                                                <li>विद्युत निर्यात र उर्जा आत्मनिर्भरता।</li>
+                                            </ul>
+                                </div>
+    
+                                <div id="tourist" class="job-details"><br>
+                                            <h2>📊 ३. पर्यटन क्षेत्र विकास:</h2>
+                                            <ul>
+                                                <li>हिमाल, संस्कृति, धर्म, पारिस्थितिकी पर्यटन प्रवर्धन।</li>
+                                                <li>होटल, हस्तकला, गाइड सेवा आदि सुदृढ।</li>
+                                            </ul>
+                                </div>
+    
+                                <div id="industries" class="job-details"><br>
+                                    <h2>४. उद्योग र लगानी प्रवर्द्धन:</h2>
+                                            <ul>
+                                                <li>स्थानीय उत्पादन प्रवर्धन।</li>
+                                                <li>विदेशी तथा आन्तरिक लगानी मैत्री वातावरण।</li>
+                                            </ul>
+                                </div>
+                                <div id="jobyong" class="job-details"><br>
+                                    <h2> ५. श्रमशक्ति र युवा सशक्तिकरण:</h2>
+                                            <ul>
+                                                <li>सीपमूलक तालिम र व्यवसायिक शिक्षा।</li>
+                                                <li>स्टार्टअप, नवप्रवर्तन, रेमिटेन्स व्यवस्थापन।</li>
+                                            </ul>
+                                </div>
+                            <footer style="text-align:center; padding-top: 2rem;">
+                                <p><strong>“सीपयुक्त युवा, समृद्ध नेपाल” - श्रम, रोजगार तथा सामाजिक सुरक्षा मन्त्रालय</strong></p>
+                            </footer>
+                        
+                            <script>
+                                function showJobs(sectionId) {
+                                    const sections = document.querySelectorAll('.job-details');
+                                    sections.forEach(sec => sec.style.display = 'none');
+                                    document.getElementById(sectionId).style.display = 'block';
+                                }
+                            </script>
+                            </div>
+                            </section>
+                            
+                    </section>
+
+                <section id="main">
+                    <div class="container1">
+                        <div class="section">
+                            <h2>📘 नेपाल सरकार योजना सारांश</h2>
+                                <p>यो रणनीति नेपालका सबै प्रदेश र स्थानीय तहमा आवास तथा बाल स्याहार योजनागर्न केन्द्रित छ।</p>
+                        </div>
+                        <div class="section">
+                                <h2>📌 रणनीतिक क्षेत्रहरू</h2>
+                                <button onclick="showJobs('agriculture')">🏠 आवास योजना</button>
+                                <button onclick="showJobs('construction')">👶 बाल स्याहार योजना</button>
+                                <button onclick="showJobs('it')">📊 विश्लेषण र योजना</button>
+                                <button onclick="showJobs('green')">रिपोर्टिंग र अनुगमन प्रणाली</button>
+
+                        <div id="agriculture" class="job-details"><br>
+                            <h3>🏠 आवास योजना</h3>
+                                                <ul>
+                                                    <li>विपन्न वर्गका लागि १००% अनुदानमा घर निर्माण</li>
+                                                    <li>महिला, दलित, अपांगता भएका नागरिकलाई प्राथमिकता</li>
+                                                    <li>सहरहरूमा सामूहिक अपार्टमेन्टयुक्त आवास आयोजना</li>
+                                                    <li>आवास ऋणमा ब्याज अनुदान र सहकारी साझेदारी</li>
+                                                    <li>स्थानीय सरकारको समन्वयमा “एक परिवार, एक घर” अभियान</li>
+                                                </ul>
+                        </div>
+
+                        <div id="construction" class="job-details"><br>
+                            <h3>👶 बाल स्याहार योजना</h3>
+                            <ul>
+                                <li>हरेक पालिकामा बाल स्याहार केन्द्र स्थापना</li>
+                                <li>कामकाजी आमाबाबुका लागि दिउँसोको स्याहार सेवा</li>
+                                <li>६ वर्षमुनिका बालबालिकाका लागि पोषण सहायता (दूध, खाजा)</li>
+                                <li>बाल स्याहार तालिम (CTEVT) र जनशक्ति विकास</li>
+                                <li>निजी क्षेत्रको साझेदारीमा गुणस्तरीय सेवा</li>
+                            </ul>
+                        </div>
+
+                        <div id="it" class="job-details"><br>
+                            <h3>📊 विश्लेषण र योजना - कार्य योजना र कार्यान्वय</h3>
+                            <ul>
+                                <li> आवास निर्माणको लागि बजेट: रु २५ अर्ब</li>
+                                <li>बाल स्याहार केन्द्रको लागि बजेट: रु १० अर्ब</li>
+                                <li>विभिन्न गन्तव्य स्थानहरूको लागि GIS आधारित निगरानी प्रणाली</li>
+                                <li>स्रोत-प्रधान बट्टा: निजी क्षेत्रको साझेदारी र विदेशी अनुदान</li>
+                                <li>रोकथाम र जोखिम मूल्याङ्कन: भ्रष्टाचार र अनियमितता नियन्त्रण</li>
+                            </ul>
+                        </div>
+
+                        <div id="green" class="job-details"><br>
+                            <h3>रिपोर्टिंग र अनुगमन प्रणाली</h3>
+                            <ul>
+                                <li>MIS (Management Information System) प्रणाली पूर्ण कार्यान्वयन</li>
+                                <li>साप्ताहिक र मासिक प्रगति रिपोर्टहरू</li>
+                                <li>सोसियल मिडिया र मोबाइल एप्लीकेशन मार्फत लाभग्राहीको प्रतिक्रिया</li>
+                                <li>डेटा विश्लेषण र पारदर्शिता: प्रत्येक कार्डको प्रगति ट्र्याक गर्न</li>
+                            </ul>
+                        </div>
+                    <footer style="text-align:center; padding-top: 2rem;">
+                        <p><strong>“सीपयुक्त युवा, समृद्ध नेपाल” - श्रम, रोजगार तथा सामाजिक सुरक्षा मन्त्रालय</strong></p>
+                    </footer>
+
+                    <script>
+                        function showJobs(sectionId) {
+                            const sections = document.querySelectorAll('.job-details');
+                            sections.forEach(sec => sec.style.display = 'none');
+                            document.getElementById(sectionId).style.display = 'block';
+                        }
+                    </script>
+
+                    <button onclick="scrollToTop()">शीर्षमा जानुहोस्</button>
+
+                    <script>
+                        function scrollToTop() {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                    </script>
+                    </div>
+                    <div class="footer">
+                    <h2>"जबसम्म भ्रष्ट नेताहरू धनी हुँदै जान्छन्, जनता गरिबीमा मर्छ!" 🇳🇵🔥</h2> 
+                    </div>
+                </section>
+
+                        <!-- Footer -->
+                                    <div id="footer">
+                                            <section>
+                                                <h2 class="major"><span>"प्राकृतिक स्रोतहरू नेपालको अमूल्य सम्पत्ति हुन् — संरक्षण र विवेकपूर्ण उपयोग नै समृद्धिको बाटो हो।" 🇳🇵</span></h2>
+                                                <h3>This is <strong>MERO NEPAL</strong>, Design By Subash
+                                                    <a href="nepal.html">नेपाल</a> हिमाल <a href="index.html"></a>. 🌿 नेपालका प्राकृतिक स्रोतहरू (Natural Resources of Nepal)</h3>
+                                                <p>
+                                                        नेपाल एक प्राकृतिक स्रोतहरूले भरिपूर्ण सुन्दर देश हो। हिमाल, नदी, जंगल, खनिज, जलस्रोत, वन्यजन्तु र जैविक विविधता नेपालको सबैभन्दा महत्वपूर्ण सम्पत्ति हुन्। यी स्रोतहरू नेपालको आर्थिक, सामाजिक र पर्यावरणीय विकासमा ठुलो योगदान पुर्‍याउँछन्।
+                                                </p>
+                                            </section>
+                                    </div>
+                            
+                    <div id="touch">
+                        <section>
+                            <h1 class="touch1"><span> सम्पर्कमा - Get in touch -  रहनुहोस् </span></h1>
+                            <ul class="contact">
+                                <li><a class="icon brands fa-github" href="https://github.com/HamiNagrik" target="_blank"> <span class="label">Github</span> </a></li>
+                                <li><a class="icon brands fa-facebook" href="https://www.facebook.com/hami.nagrik.3" target="_blank"><span class="label">Facebook</span></a></li>
+                                <li><a class="icon brands fa-twitter" href="https://x.com/haminagrik/status/1908926506845323379" target="_blank"><span class="label">Twitter</span></a></li>
+                                <li><a class="icon brands fa-instagram" href="https://www.instagram.com/haminagrik/" target="_blank"><span class="label">Instagram</span></a></li>
+                                <li><a class="icon brands fa-linkedin" href="https://www.linkedin.com/in/nagarik-hami77/" target="_blank"><span class="label">LinkedIn</span></a></li>
+                                <li><a class="icon brands fa-youtube" href="https://www.youtube.com/@Economyforthepeople" target="_blank"><span class="label">Youtube</span></a></li>
+                            </ul>
+                        </section>
+                    </div>
+                                    <!-- Copyright -->
+                    <div id="copyright">
+                        <ul class="me">
+                            <span class="copyright-notice">&copy;<script>document.write(new Date().getFullYear())</script> News--War. All rights reserved.</span>
+                        </ul>
+                    </div>
+
+
+    <!-- Login Modal -->
+       <!-- Login Modal -->
+       <div class="modal-overlay" id="loginModal">
+        <div class="modal-container">
+            <button class="modal-close" id="loginClose">&times;</button>
+            <h2 class="modal-title">Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail" class="form-label">Email Address</label>
+                    <input type="email" id="loginEmail" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword" class="form-label">Password</label>
+                    <input type="password" id="loginPassword" class="form-input" required>
+                </div>
+                <button type="submit" class="form-submit">Login</button>
+                
+                <div class="social-login">
+                    <p>Or login with</p>
+                    <div class="social-buttons">
+                        <a href="https://www.facebook.com/login" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwww.google.com%2Fsearch%3Fclient%3Dfirefox-b-d%26q%3Dgmail.com%26sei%3D7RQTaI6DEKim9u8Pxuj94Ag&ec=GAZAAQ&hl=en-US&ifkv=ASKV5MiiUB4uCV7LQSwWGOq83VmlbxhoAf6AzqX0SLNrDgwWIHFNR-qVcwAEUk7yTp_zPmaelrS_Gw&passive=true&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-751471855%3A1746081013461775" class="social-btn google"><i class="fab fa-google"></i></a>
+                        <a href="https://x.com/i/flow/login" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://ch.linkedin.com/company/login" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="form-footer">
+                    Don't have an account? <a href="#" class="form-link" id="showRegister">Register here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal-container">
+            <button class="modal-close" id="registerClose">&times;</button>
+            <h2 class="modal-title">Create Your Account</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName" class="form-label">Full Name</label>
+                    <input type="text" id="registerName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail" class="form-label">Email Address</label>
+                    <input type="email" id="registerEmail" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword" class="form-label">Password</label>
+                    <input type="password" id="registerPassword" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirm" class="form-label">Confirm Password</label>
+                    <input type="password" id="registerConfirm" class="form-input" required>
+                </div>
+                <button type="submit" class="form-submit">Register</button>
+                
+                <div class="social-login">
+                    <p>Or register with</p>
+                    <div class="social-buttons">
+                        <a href="https://www.facebook.com/register" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&ifkv=ASKV5MhnwGLjy8VY9z0tGPdg5UxBeBwdw72S4N7pZK7qqjEMaEnPubVWNesD-BUwB0rAeZfjq6Ot&osid=1&passive=1209600&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-987291352%3A1746082056262194" class="social-btn google"><i class="fab fa-google"></i></a>
+                        <a href="https://x.com/i/flow/register" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://ch.linkedin.com/company/reg" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="form-footer">
+                    Already have an account? <a href="#" class="form-link" id="showLogin">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+	                <script src="assets/js/jquery.min.js"></script>
+					<script src="assets/js/script.js"></script>
+					<script src="assets/js/jquery.dropotron.min.js"></script>
+					<script src="assets/js/jquery.scrolly.min.js"></script>
+					<script src="assets/js/browser.min.js"></script>
+					<script src="assets/js/breakpoints.min.js"></script>
+					<script src="assets/js/util.js"></script>
+					<script src="assets/js/main.js"></script>
+		
+
+</body>
+</html>
